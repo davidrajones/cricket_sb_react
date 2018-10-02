@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'DSEG7 Classic Light';
+    font-style: normal;
+    src: local('DSEG7 Classic Light'), 
+        url("./fonts/DSEG7-Classic/DSEG7Classic-Light.woff2") format("woff2"),
+        url("./fonts/DSEG7-Classic/DSEG7Classic-Light.woff") format('woff'),
+        url("./fonts/DSEG7-Classic/DSEG7Classic-Light.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'DSEG7 Classic Regular';
+    font-style: normal;
+    src: local('DSEG7 Classic Regular'), 
+        url("./fonts/DSEG7-Classic/DSEG7Classic-Regular.woff2") format("woff2"),
+        url("./fonts/DSEG7-Classic/DSEG7Classic-Regular.woff") format('woff'),
+        url("./fonts/DSEG7-Classic/DSEG7Classic-Regular.ttf") format('truetype');
+}
+
+
+body {
+    font-family: 'DSEG7 Classic Regular', sans-serif;
+    font-weight: 300;
+    color: rgb(8, 250, 8);
+}

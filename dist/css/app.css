@@ -1,0 +1,65 @@
+.app-container {
+    display: grid;
+    grid-template-rows: 10vh 40vh 40vh 10vh;
+    grid-template-columns: 33vw 33vw 33vw;
+    grid-gap: 0px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;    
+    align-items: center;
+    justify-items: center;
+    font-size: 3vh;
+    background-color: rgb(22, 22, 22);
+    color: rgb(90, 90, 90);
+    background-image: url('../images/ickletoncc.jpeg');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 10vw;
+}
+
+.scoreboard-header {
+    grid-area: 1 / 1 / span 1 / span 3;
+    font-family: "Helvetica";
+    text-align: center;
+    font-size: 6vh;
+    background-color: rgb(22, 22, 22);
+}
+
+/* .head {
+    font-family: "Helvetica";
+    color: rgb(90, 90, 90);;
+} */
+  
+.batter-a {
+    grid-area: 2 / 1 / span 1 / span 1;
+} 
+
+.total-score {
+    grid-area: 2 / 2 / span 1 / span 1;
+} 
+ 
+.batter-b {
+    grid-area: 2 / 3 / span 1 / span 1;
+}
+
+.wickets-sect {
+    grid-area: 3 / 1 / span 1 / span 1;
+} 
+
+.overs-sect {
+    grid-area: 3 / 2 / span 1 / span 1;
+}
+
+.target-score {
+    grid-area: 3 / 3 / span 1 / span 1;
+}
+
+.reset-button {
+    grid-area: 4 / 3 / span 1 / span 1;
+}
+
+.next-innings-button {
+    grid-area: 4 / 2 / span 1 / span 1;
+}
+

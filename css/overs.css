@@ -1,0 +1,53 @@
+.overs-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 3fr 10fr 3fr;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    text-align: center;
+    margin: none;
+    padding: none;
+}
+
+.over-head {
+    grid-area: 1 / 1 / span 1 / span 3;
+}
+
+.overs-buttons {
+    grid-area: 3 / 2 / span 1 / span 1;
+}
+
+.overs-buttons-grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.overs-button-text {
+    grid-area: 1 / 2 / span 1 / span 1;
+    padding: 2px;
+}
+
+.overs-plus-button {
+    grid-area: 1 / 3 / span 1 / span 1;
+}
+
+.overs-minus-button {
+    grid-area: 1 / 1 / span 1 / span 1;
+}
+
+.over-number {
+    grid-area: 2 / 2 / span 1 / span 1;
+}

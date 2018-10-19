@@ -13,7 +13,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "compile": "webpack --mode=development --config ./webpack.config.js --progress",
-        "build-static": "cp -r css dist/ && cp -r js dist/",
+        "build-static": "cp -r css dist/ && cp -r js dist/ && cp -r images dist/",
         "build-all": "npm run compile && npm run build-static",
         "compile-static": ""
     },
@@ -24,13 +24,16 @@
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-react": "^6.24.1",
         "babel-preset-stage-2": "^6.24.1",
-        "webpack": "^4.19.0",
+        "css-loader": "^1.0.0",
+        "style-loader": "^0.23.1",
+        "url-loader": "^1.1.2",
+        "webpack": "^4.20.2",
         "webpack-cli": "^3.1.0"
     },
     "author": "drjdev",
     "dependencies": {
         "babel-engine-plugin": "^0.2.1",
-        "bootstrap": "file:bootstrap-4.1.3",
+        "bootstrap": "^4.1.2",
         "eslint": "^5.6.0",
         "eslint-plugin-react": "^7.11.1",
         "jquery": "^3.3.1",

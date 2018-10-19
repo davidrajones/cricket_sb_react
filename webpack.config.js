@@ -17,6 +17,16 @@ module.exports = {
       {
         test: /\.html$/,
         loader: 'raw-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.(gif|eot|woff|woff2|ttf|svg|jpeg)$/,
+        loaders: [
+          'url-loader'
+        ]
       }
     ]
   },

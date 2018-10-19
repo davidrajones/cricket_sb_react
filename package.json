@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "description": "",
     "private": true,
+    "homepage": "https://drjdev.github.io/cricket-sb-react/",
     "babel": {
         "presets": [
             "env",
@@ -15,7 +16,8 @@
         "compile": "webpack --mode=development --config ./webpack.config.js --progress",
         "build-static": "cp index.html dist/ && cp -r css dist/ && cp -r js dist/ && cp -r images dist/",
         "build-all": "npm run compile && npm run build-static",
-        "compile-static": ""
+        "compile-static": "",
+        "deploy": "gh-pages -d dist"
     },
     "devDependencies": {
         "babel-core": "^6.26.3",
@@ -36,6 +38,7 @@
         "bootstrap": "^4.1.2",
         "eslint": "^5.6.0",
         "eslint-plugin-react": "^7.11.1",
+        "gh-pages": "^2.0.1",
         "jquery": "^3.3.1",
         "popper.js": "^1.14.4",
         "react": "^16.5.1",

@@ -1,0 +1,9 @@
+.main-container {
+    /* background-image: url('../images/ickletoncc.jpeg');
+    background-repeat: no-repeat;
+    background-position: bottom right; */ 
+    background-color: rgb(22, 22, 22);
+    /* background-size: 10%; */
+    width: 100vw;
+    height: 100vh;
+}

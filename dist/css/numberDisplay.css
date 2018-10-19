@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'DSEG7 Classic Regular';
+    font-style: normal;
+    src: local('DSEG7 Classic Regular'), 
+        url("./fonts/DSEG7-Classic/DSEG7Classic-Regular.woff2") format("woff2"),
+        url("./fonts/DSEG7-Classic/DSEG7Classic-Regular.woff") format('woff'),
+        url("./fonts/DSEG7-Classic/DSEG7Classic-Regular.ttf") format('truetype');
+}
+
+.number-display-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 0.3fr 1fr 0.3fr;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+}
+
+.number-display-grid {
+    grid-area: 2 / 2 / span 1 / span 1;
+    vertical-align: middle;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.number-digit {    
+    font-family: 'DSEG7 Classic Regular', sans-serif;
+    font-weight: 300;
+    font-size: 4vmin;
+    width: 12vw;
+    text-align: right;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    background-color: rgb(73, 73, 73);   
+    background-repeat: repeat;
+    color: rgb(10, 220, 10);
+}
+
+button {
+    width: 100%;
+    text-align: center;
+    margin: none;
+    padding: none;
+}
+
+.title {
+    grid-area: 1 / 2 / span 1 / span 1;
+    font-size: 2.5vmin;
+}
+  
+.buttonMinus1 {
+    grid-area: 1 / 1 / span 1 / span 1;
+} 
+
+.buttonPlus1 {
+    grid-area: 1 / 3 / span 1 / span 1;
+}
+
+.buttonMinus4 {
+    grid-area: 2 / 1 / span 1 / span 1;
+}
+
+.buttonPlus4 {
+    grid-area: 2 / 3 / span 1 / span 1;
+}
+
+.buttonMinus6 {
+    grid-area: 3 / 1 / span 1 / span 1;
+} 
+
+.buttonOut {
+    grid-area: 3 / 2 / span 1 / span 1;  
+}
+
+.buttonPlus6 {
+    grid-area: 3 / 3 / span 1 / span 1;
+}

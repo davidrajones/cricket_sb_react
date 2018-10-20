@@ -117,7 +117,7 @@ export class App extends React.Component{
             <div className="app-container">
 
                 <section className="scoreboard-header">
-                    Ickleton CC Scoreboard
+                    ICKLETON CRICKET CLUB SCOREBOARD
                 </section>
 
                 <section className="batter-a">

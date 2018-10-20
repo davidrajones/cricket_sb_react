@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Book Antiqua Regular';
+    font-style: normal;
+    src: local('Book Antiqua Regular'), 
+        url("./fonts/BookAntiquaRegular.ttf") format('truetype');
+}
+
 .app-container {
     display: grid;
     grid-template-rows: 10vh 40vh 40vh 10vh;
@@ -20,10 +27,13 @@
 
 .scoreboard-header {
     grid-area: 1 / 1 / span 1 / span 3;
-    font-family: "Helvetica";
+    font-family: "Book Antiqua Regular","Helvetica";
     text-align: center;
     font-size: 6vh;
     background-color: rgb(22, 22, 22);
+    background: -webkit-linear-gradient(#F4F5F0, #867E5A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* .head {

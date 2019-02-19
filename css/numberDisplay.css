@@ -29,14 +29,14 @@
 .number-digit {    
     font-family: 'DSEG7 Classic Regular', sans-serif;
     font-weight: 300;
-    font-size: 4vmin;
+    font-size: 7vmin;
+    height: 10vh;
     width: 12vw;
     text-align: right;
     align-items: center;
     align-content: center;
     justify-content: center;
-    background-color: rgb(73, 73, 73);   
-    background-repeat: repeat;
+    background-color: rgb(37, 37, 37);   
     color: rgb(10, 220, 10);
 }
 
@@ -47,9 +47,11 @@ button {
     padding: none;
 }
 
-.title {
-    grid-area: 1 / 2 / span 1 / span 1;
-    font-size: 2.5vmin;
+.title{
+    grid-area: 1 / 1 / span 1 / span 3;
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(255, 255, 255);
 }
   
 .buttonMinus1 {

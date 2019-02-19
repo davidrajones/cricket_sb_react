@@ -22,32 +22,32 @@ export class BatterNumber extends React.Component{
 
     render(){
         return (<div className="number-display-container">
-                    <section className="title"><h5>{this.props.title}</h5></section>
+                    <section className="title">{this.props.title}</section>
 
-                    <section className="buttonMinus1 runs-button">
+                    <section className="buttonMinus1">
                         <RunsButton runsVal={-1} onButtonClick={this.handleClick} />
                     </section> 
-                    <section className="buttonPlus1 runs-button">
+                    <section className="buttonPlus1">
                         <RunsButton runsVal={1} onButtonClick={this.handleClick} />                    
                     </section>
 
-                    <section className="buttonMinus4 runs-button">
+                    <section className="buttonMinus4">
                         <RunsButton runsVal={-4} onButtonClick={this.handleClick} />
                     </section> 
                     <section className="number-display-grid">
-                        <NumberDisplay value={this.props.score} />
+                        <NumberDisplay value={this.props.score} onChange={this.handleTextChange}/>
                     </section>
-                    <section className="buttonPlus4 runs-button">
+                    <section className="buttonPlus4">
                         <RunsButton runsVal={4} onButtonClick={this.handleClick} />
                     </section>
 
-                    <section className="buttonMinus6 runs-button">
+                    <section className="buttonMinus6">
                         <RunsButton runsVal={-6} onButtonClick={this.handleClick} />
                     </section> 
-                    <section className="buttonOut runs-button">
+                    <section className="buttonOut">
                         <OutButton value="out" onButtonClick={this.handleOutClick} />
                     </section>
-                    <section className="buttonPlus6 runs-button">
+                    <section className="buttonPlus6">
                         <RunsButton runsVal={6} onButtonClick={this.handleClick} />
                     </section>
                 </div>);

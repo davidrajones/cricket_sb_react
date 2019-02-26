@@ -29,6 +29,8 @@ export class App extends React.Component{
         this.handleScoreUpdate = this.handleScoreUpdate.bind(this);
         this.handleBatAWicket = this.handleBatAWicket.bind(this);
         this.handleBatBWicket = this.handleBatBWicket.bind(this);
+        this.handleUpdateScoreboard = this.handleUpdateScoreboard.bind(this);
+        this.getScoresJson = this.getScoresJson.bind(this);
     }
 
     handleBatAScoreUpdate (delta){
@@ -53,12 +55,15 @@ export class App extends React.Component{
         this.handleScoreUpdate(updateVals);
     }
 
+    
+
     handleScoreUpdate (delta) {
         let newTotScore = this.state.totalScore + delta;
         if (newTotScore < 0){
             newTotScore = 0;
         }
         this.setState({totalScore: newTotScore});
+        //this.handleUpdateScoreboard();
     }
 
     handleBatAWicket (){
@@ -77,6 +82,7 @@ export class App extends React.Component{
             newWickets = 9;
         }
         this.setState({wickets: newWickets});
+        //this.handleUpdateScoreboard();
     }
 
     handleOversUpdate (delta){
@@ -85,6 +91,7 @@ export class App extends React.Component{
             newOvers = 0;
         }
         this.setState({overs: newOvers});
+        //this.handleUpdateScoreboard();
     }
 
     handleNextInnings (){
@@ -110,6 +117,88 @@ export class App extends React.Component{
                 batAScore: 0,
                 batBScore: 0
             });
+
+        //this.handleUpdateScoreboard();        
+    }
+
+    getScoresJson(){
+      console.log('{"scores": {"scorestr1": "'+this.state.batAScore+','+this.state.totalScore+','+this.state.batBScore+
+      '", "scorestr2": "'+this.state.wickets+','+this.state.overs+','+this.state.targetScore+'"}}');
+      return '{"scores": {"scorestr1": "'+this.state.batAScore+','+this.state.totalScore+','+this.state.batBScore+
+              '", "scorestr2": "'+this.state.wickets+','+this.state.overs+','+this.state.targetScore+'"}}';
+    }
+
+    // async function getUpdateResult(){
+    //   let res = await fetch('http://localhost:5000/update', 
+    //   {
+    //     method: 'POST',
+    //     mode: 'cors',
+    //     headers: {
+    //       "access-control-allow-origin" : "*",
+    //       "Content-type": "application/json; charset=UTF-8"
+    //     },
+    //     body: this.getScoresJson()
+    //   });
+
+    //   if(res.status != 200){
+    //     return null;
+    //   }
+
+    //   data = await res.json();
+
+    //   return data;
+    // }
+
+    handleUpdateScoreboard(){
+      //Handle init here
+      //let res = await fetch//
+      // let data = getUpdateResult(); 
+      // if (data){
+      //   console.log(data);
+      //   console.log('Scoreboard updated');
+      // 
+      
+      fetch('http://localhost:5000/update', 
+              {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                  "access-control-allow-origin" : "*",
+                  "Content-type": "application/json; charset=UTF-8"
+                },
+                body: this.getScoresJson()
+              })
+      .then((res) => {
+        console.log(res.json)
+        if(res.status != 200){
+          return res
+        }
+      }).then(console.log("Updated scores."));
+
+    }
+    
+    componentDidUpdate(prevProps, prevState) {
+      if (prevState !== this.state) {
+        this.handleUpdateScoreboard();
+      }
+    }
+
+    componentDidMount(){
+      //Handle init here
+      fetch('http://localhost:5000/init', 
+              {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                  "access-control-allow-origin" : "*",
+                  "Content-type": "application/json; charset=UTF-8"
+                }
+              })
+      .then((res) => {
+        if(res.status != 200){
+          return res
+        }  
+      }).then(console.log("Initialised arduino."));
     }
 
     render(){

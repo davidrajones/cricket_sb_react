@@ -6,7 +6,7 @@ const babelrc = JSON.parse(fs.readFileSync('.babelrc', 'utf8'))
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.jsx',
+  entry: ['babel-polyfill', './src/index.jsx'],
   module: {
     rules: [
       {

@@ -14,6 +14,6 @@ export class ResetButton extends React.Component{
     }
         
     render(){
-        return (<button className="button-reset" onClick={this.handleClick}>{this.props.value}</button>);
+        return (<button className="button-reset btn btn-outline-secondary btn-lg" onClick={this.handleClick}>{this.props.value}</button>);
     }
 }

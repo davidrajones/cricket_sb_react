@@ -18,6 +18,9 @@ button {
 
 .target-head {
     grid-area: 1 / 1 / span 1 / span 3;
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+    text-align: center;
 }
 
 .target-number {

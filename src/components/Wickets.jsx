@@ -11,7 +11,7 @@ export class Wickets extends React.Component{
     render(){
         return (
             <div className="wickets-grid">
-                <section className="wickets-head"><h5>Wickets</h5></section>
+                <section className="wickets-head">Wickets</section>
                 <section className="wickets-number"><NumberDisplay value={this.props.value} /></section>
             </div>);
     }

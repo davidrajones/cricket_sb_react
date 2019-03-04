@@ -17,7 +17,7 @@ export class TotalScore extends React.Component{
     render(){
         return (
             <div className="total-score-grid">
-                <section className="head"><h5>Total Score</h5></section>
+                <section className="head">Total Score</section>
                 <section className="number"><NumberDisplay value={this.props.number} /></section>
                 <section className="total-score-buttons">
                     <div className="total-score-buttons-grid">

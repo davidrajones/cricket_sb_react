@@ -17,7 +17,7 @@ export class OversNum extends React.Component{
     render(){
         return (
             <div className="overs-grid">
-                <section className="over-head"><h5>Overs</h5></section>
+                <section className="over-head">Overs</section>
                 <section className="over-number"><NumberDisplay value={this.props.number} /></section>
                 <section className="overs-buttons">
                     <div className="overs-buttons-grid">

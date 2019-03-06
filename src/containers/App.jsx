@@ -204,37 +204,47 @@ export class App extends React.Component{
     render(){
         return (
             <div className="app-container">
+              <div className="row">
+                <div className="col-sm scoreboard-header">
+                      ICKLETON CC SCOREBOARD
+                </div>
+              </div>
 
-                <section className="scoreboard-header">
-                    ICKLETON CC SCOREBOARD
-                </section>
+              <div className="row">
+                <div className="col-sm-4 batter-a">
+                  <BatterNumber title="Batter A" score={this.state.batAScore} scoreUpdate={this.handleBatAScoreUpdate} handleWicket={this.handleBatAWicket}/>
+                </div>
+                <div className="col-sm-4 total-score">
+                  <TotalScore number={this.state.totalScore} handleClick={this.handleScoreUpdate} />
+                </div>
+                <div className="col-sm-4 batter-b">
+                  <BatterNumber title="Batter B" score={this.state.batBScore} scoreUpdate={this.handleBatBScoreUpdate} handleWicket={this.handleBatBWicket}/>
+                </div>
+              </div>
 
-                <section className="batter-a">
-                    <BatterNumber title="Batter A" score={this.state.batAScore} scoreUpdate={this.handleBatAScoreUpdate} handleWicket={this.handleBatAWicket}/>
-                </section>
-                <section className="total-score">
-                    <TotalScore number={this.state.totalScore} handleClick={this.handleScoreUpdate} />
-                </section>
-                <section className="batter-b">
-                    <BatterNumber title="Batter B" score={this.state.batBScore} scoreUpdate={this.handleBatBScoreUpdate} handleWicket={this.handleBatBWicket}/>
-                </section>
+              <div className="row">
+                <div className="col-sm-4 wickets-sect">
+                  <Wickets value={this.state.wickets} />
+                </div>
+                <div className="col-sm-4 overs-sect">
+                  <OversNum number={this.state.overs} handleClick={this.handleOversUpdate} />                        
+                </div>
+                <div className="col-sm-4 target-score">
+                  <TargetScore value={this.state.targetScore} />
+                </div>
+              </div>
 
-                <section className="wickets-sect">
-                    <Wickets value={this.state.wickets} />
-                </section>
-                <section className="overs-sect">
-                    <OversNum number={this.state.overs} handleClick={this.handleOversUpdate} />                        
-                </section>
-                <section className="target-score">
-                    <TargetScore value={this.state.targetScore} />
-                </section>
-
-                <section className=".next-innings-button">
-                    <NextInningsButton value="Next Innings" onButtonClick={this.handleNextInnings}/>
-                </section>
-                <section className=".reset-button">
-                    <ResetButton value="Reset" onButtonClick={this.handleResetClick}/>
-                </section>
+              <div className="row">
+                <div className="col-sm-4 next-innings-button">
+                  <NextInningsButton value="Next Innings" onButtonClick={this.handleNextInnings}/>
+                </div>
+                <div className="col-sm-4 reset-button">
+                  <ResetButton value="Reset" onButtonClick={this.handleResetClick}/>
+                </div>
+                <div className="col-sm-4 icc_image">
+                </div>
+                
+              </div>
             </div>
         );
             

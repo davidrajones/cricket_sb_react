@@ -6,10 +6,6 @@
 }
 
 .app-container {
-    display: grid;
-    grid-template-rows: 10vh 40vh 40vh 10vh;
-    grid-template-columns: 33vw 33vw 33vw;
-    grid-gap: 0px;
     align-items: center;
     align-content: center;
     justify-content: center;
@@ -26,50 +22,12 @@
 }
 
 .scoreboard-header {
-    grid-area: 1 / 1 / span 1 / span 3;
     font-family: "Book Antiqua Regular","Helvetica";
     text-align: center;
     font-size: 6vh;
     background-color: rgb(22, 22, 22);
     background: -webkit-linear-gradient(#F4F5F0, #867E5A);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-/* .head {
-    font-family: "Helvetica";
-    color: rgb(90, 90, 90);;
-} */
-  
-.batter-a {
-    grid-area: 2 / 1 / span 1 / span 1;
-} 
-
-.total-score {
-    grid-area: 2 / 2 / span 1 / span 1;
-} 
- 
-.batter-b {
-    grid-area: 2 / 3 / span 1 / span 1;
-}
-
-.wickets-sect {
-    grid-area: 3 / 1 / span 1 / span 1;
-} 
-
-.overs-sect {
-    grid-area: 3 / 2 / span 1 / span 1;
-}
-
-.target-score {
-    grid-area: 3 / 3 / span 1 / span 1;
-}
-
-.reset-button {
-    grid-area: 4 / 3 / span 1 / span 1;
-}
-
-.next-innings-button {
-    grid-area: 4 / 2 / span 1 / span 1;
-}
-

@@ -30,8 +30,7 @@
     font-family: 'DSEG7 Classic Regular', sans-serif;
     font-weight: 300;
     font-size: 7vmin;
-    height: 10vh;
-    width: 12vw;
+    width: 16vw;
     text-align: right;
     align-items: center;
     align-content: center;
@@ -49,7 +48,7 @@ button {
 
 .title{
     grid-area: 1 / 1 / span 1 / span 3;
-    font-size: 1.5em;
+    /*font-size: 1.5em;*/
     text-align: center;
     color: rgb(255, 255, 255);
 }

@@ -1,6 +1,6 @@
 .total-score-grid {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 3fr 10fr 3fr;
     align-items: center;
     align-content: center;
@@ -34,7 +34,6 @@ button {
 .head {
     grid-area: 1 / 1 / span 1 / span 3;
     color: rgb(255, 255, 255);
-    font-size: 1.5em;
     text-align: center;
 }
 

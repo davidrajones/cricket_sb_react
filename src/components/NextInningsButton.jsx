@@ -14,6 +14,6 @@ export class NextInningsButton extends React.Component{
     }
         
     render(){
-        return (<button className="button-next-innings btn btn-outline-secondary btn-lg" onClick={this.handleClick}>{this.props.value}</button>);
+        return (<button className="button-next-innings btn btn-outline-secondary" onClick={this.handleClick}>{this.props.value}</button>);
     }
 }

@@ -11,7 +11,7 @@ export class TargetScore extends React.Component{
     render(){
         return (
             <div className="target-grid">
-                <section className="target-head">Target Score</section>
+                <section className="target-head">Target</section>
                 <section className="target-number"><NumberDisplay value={this.props.value} /></section>
             </div>);
     }

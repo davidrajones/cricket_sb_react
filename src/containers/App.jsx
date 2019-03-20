@@ -95,6 +95,7 @@ export class App extends React.Component{
     }
 
     handleNextInnings (){
+      const r = window.confirm("Are you sure you want to start the next innings?"); if(r == true){
         let newTargetScore = this.state.totalScore + 1;
         this.setState(
             {
@@ -105,19 +106,21 @@ export class App extends React.Component{
                 batAScore: 0,
                 batBScore: 0
             });
+        }
     }
 
     handleResetClick (){
-        this.setState(
-            {
-                totalScore: 0,
-                wickets: 0,
-                overs: 0,
-                targetScore: 0,
-                batAScore: 0,
-                batBScore: 0
-            });
-
+        const r = window.confirm("Are you sure you want to reset?"); if(r == true){
+          this.setState(
+              {
+                  totalScore: 0,
+                  wickets: 0,
+                  overs: 0,
+                  targetScore: 0,
+                  batAScore: 0,
+                  batBScore: 0
+              });
+        }
         //this.handleUpdateScoreboard();        
     }
 
@@ -128,37 +131,10 @@ export class App extends React.Component{
               '", "scorestr2": "'+this.state.wickets+','+this.state.overs+','+this.state.targetScore+'"}}';
     }
 
-    // async function getUpdateResult(){
-    //   let res = await fetch('http://localhost:5000/update', 
-    //   {
-    //     method: 'POST',
-    //     mode: 'cors',
-    //     headers: {
-    //       "access-control-allow-origin" : "*",
-    //       "Content-type": "application/json; charset=UTF-8"
-    //     },
-    //     body: this.getScoresJson()
-    //   });
-
-    //   if(res.status != 200){
-    //     return null;
-    //   }
-
-    //   data = await res.json();
-
-    //   return data;
-    // }
-
     handleUpdateScoreboard(){
       //Handle init here
-      //let res = await fetch//
-      // let data = getUpdateResult(); 
-      // if (data){
-      //   console.log(data);
-      //   console.log('Scoreboard updated');
-      // 
       
-      fetch('http://localhost:5000/update', 
+      fetch('/api/update', 
               {
                 method: 'POST',
                 mode: 'cors',
@@ -185,7 +161,7 @@ export class App extends React.Component{
 
     componentDidMount(){
       //Handle init here
-      fetch('http://localhost:5000/init', 
+      fetch('/api/init', 
               {
                 method: 'GET',
                 mode: 'cors',
@@ -212,13 +188,13 @@ export class App extends React.Component{
 
               <div className="row">
                 <div className="col-sm-4 batter-a">
-                  <BatterNumber title="Batter A" score={this.state.batAScore} scoreUpdate={this.handleBatAScoreUpdate} handleWicket={this.handleBatAWicket}/>
+                  <BatterNumber title="Bat A" score={this.state.batAScore} scoreUpdate={this.handleBatAScoreUpdate} handleWicket={this.handleBatAWicket}/>
                 </div>
                 <div className="col-sm-4 total-score">
                   <TotalScore number={this.state.totalScore} handleClick={this.handleScoreUpdate} />
                 </div>
                 <div className="col-sm-4 batter-b">
-                  <BatterNumber title="Batter B" score={this.state.batBScore} scoreUpdate={this.handleBatBScoreUpdate} handleWicket={this.handleBatBWicket}/>
+                  <BatterNumber title="Bat B" score={this.state.batBScore} scoreUpdate={this.handleBatBScoreUpdate} handleWicket={this.handleBatBWicket}/>
                 </div>
               </div>
 

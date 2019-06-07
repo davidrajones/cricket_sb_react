@@ -17,18 +17,18 @@ export class TotalScore extends React.Component{
     render(){
         return (
             <div className="total-score-grid">
-                <section className="head">Total</section>
+                <section className={"head "+this.props.title_style}>Total</section>
                 <section className="number"><NumberDisplay value={this.props.number} /></section>
                 <section className="total-score-buttons">
                     <div className="total-score-buttons-grid">
                         <section className="total-score-minus-button">
-                            <RunsButton runsVal={-1} onButtonClick={this.handleButtonClick} />
+                            <RunsButton runsVal={-1} button_style={this.props.but_style} onButtonClick={this.handleButtonClick} />
                         </section>
-                        <section className="total-score-button-text">
+                        <section className={"total-score-button-text "+this.props.title_style}>
                             Extras
                         </section>
                         <section className="total-score-plus-button">
-                            <RunsButton runsVal={1} onButtonClick={this.handleButtonClick} />
+                            <RunsButton runsVal={1} button_style={this.props.but_style} onButtonClick={this.handleButtonClick} />
                         </section>
                     </div>
                 </section>                

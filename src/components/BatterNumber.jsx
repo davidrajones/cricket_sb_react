@@ -22,33 +22,33 @@ export class BatterNumber extends React.Component{
 
     render(){
         return (<div className="number-display-container">
-                    <section className="title">{this.props.title}</section>
+                    <section className={"title "+this.props.title_style}>{this.props.title}</section>
 
                     <section className="buttonMinus1">
-                        <RunsButton runsVal={-1} onButtonClick={this.handleClick} />
+                        <RunsButton runsVal={-1} button_style={this.props.but_style} onButtonClick={this.handleClick} />
                     </section> 
                     <section className="buttonPlus1">
-                        <RunsButton runsVal={1} onButtonClick={this.handleClick} />                    
+                        <RunsButton runsVal={1} button_style={this.props.but_style} onButtonClick={this.handleClick} />                    
                     </section>
 
                     <section className="buttonMinus4">
-                        <RunsButton runsVal={-4} onButtonClick={this.handleClick} />
+                        <RunsButton runsVal={-4} button_style={this.props.but_style} onButtonClick={this.handleClick} />
                     </section> 
                     <section className="number-display-grid">
                         <NumberDisplay value={this.props.score} onChange={this.handleTextChange}/>
                     </section>
                     <section className="buttonPlus4">
-                        <RunsButton runsVal={4} onButtonClick={this.handleClick} />
+                        <RunsButton runsVal={4} button_style={this.props.but_style} onButtonClick={this.handleClick} />
                     </section>
 
                     <section className="buttonMinus6">
-                        <RunsButton runsVal={-6} onButtonClick={this.handleClick} />
+                        <RunsButton runsVal={-6} button_style={this.props.but_style} onButtonClick={this.handleClick} />
                     </section> 
                     <section className="buttonOut">
-                        <OutButton value="out" onButtonClick={this.handleOutClick} />
+                        <OutButton value="out" button_style={this.props.but_style} onButtonClick={this.handleOutClick} />
                     </section>
                     <section className="buttonPlus6">
-                        <RunsButton runsVal={6} onButtonClick={this.handleClick} />
+                        <RunsButton runsVal={6} button_style={this.props.but_style} onButtonClick={this.handleClick} />
                     </section>
                 </div>);
     }

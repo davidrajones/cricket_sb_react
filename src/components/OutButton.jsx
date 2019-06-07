@@ -14,6 +14,6 @@ export class OutButton extends React.Component{
     }
         
     render(){
-        return (<button type="button" className="btn btn-outline-secondary runs-button" onClick={this.handleClick}>{this.props.value}</button>);
+        return (<button type="button" className={"btn "+this.props.button_style+" runs-button"} onClick={this.handleClick}>{this.props.value}</button>);
     }
 }

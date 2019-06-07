@@ -12,8 +12,16 @@ export class ResetButton extends React.Component{
     handleClick(){
         this.props.onButtonClick();
     }
-        
+
+    shouldComponentUpdate(nextProps, nextState){
+        if (this.props.but_style === nextProps.but_style){
+            return false;
+        }
+        return true;
+    }
+
     render(){
-        return (<button className="button-reset btn btn-outline-secondary" onClick={this.handleClick}>{this.props.value}</button>);
+        var classes = "button-reset btn "+ this.props.but_style;
+        return (<button className={classes} onClick={this.handleClick}>{this.props.value}</button>);
     }
 }

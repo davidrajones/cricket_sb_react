@@ -6,6 +6,7 @@ import { Wickets } from '../components/Wickets';
 import { TargetScore } from '../components/TargetScore';
 import { ResetButton } from '../components/ResetButton';
 import { NextInningsButton } from '../components/NextInningsButton';
+import { ThemeChangeButton } from '../components/ThemeChangeButton';
 
 import '../../css/app.css';
 
@@ -18,7 +19,11 @@ export class App extends React.Component{
                         overs: 0,
                         targetScore: 0,
                         batAScore: 0,
-                        batBScore: 0
+                        batBScore: 0,
+                        button_style: 'btn-outline-light',
+                        container_style: "container-light",
+                        title_style: "title-light",
+                        notTheme: 'Light'
                     };
         this.handleBatAScoreUpdate = this.handleBatAScoreUpdate.bind(this);
         this.handleBatBScoreUpdate = this.handleBatBScoreUpdate.bind(this);
@@ -31,6 +36,8 @@ export class App extends React.Component{
         this.handleBatBWicket = this.handleBatBWicket.bind(this);
         this.handleUpdateScoreboard = this.handleUpdateScoreboard.bind(this);
         this.getScoresJson = this.getScoresJson.bind(this);
+        this.setScoresJson = this.setScoresJson.bind(this);
+        this.handleThemeChange = this.handleThemeChange.bind(this);
     }
 
     handleBatAScoreUpdate (delta){
@@ -109,6 +116,30 @@ export class App extends React.Component{
         }
     }
 
+    handleThemeChange (){
+        let new_but_style = this.state.button_style;
+        let new_not_theme = this.state.notTheme;
+        let new_container = this.state.container_style;
+        let new_title_style = this.state.title_style;
+        if (new_but_style == 'btn-outline-light'){
+            new_but_style = 'btn-outline-dark';
+            new_container = "container-dark";
+            new_title_style = "title-dark";
+            new_not_theme = 'Dark';
+        }else{
+            new_but_style = 'btn-outline-light';
+            new_container = "container-light";
+            new_title_style = "title-light";
+            new_not_theme = 'Light';
+        }
+        this.setState({
+            button_style: new_but_style,
+            notTheme: new_not_theme,
+            container_style: new_container,
+            title_style: new_title_style
+        });
+    }
+
     handleResetClick (){
         const r = window.confirm("Are you sure you want to reset?"); if(r == true){
           this.setState(
@@ -129,6 +160,32 @@ export class App extends React.Component{
       '", "scorestr2": "'+this.state.wickets+','+this.state.overs+','+this.state.targetScore+'"}}');
       return '{"scores": {"scorestr1": "'+this.state.batAScore+','+this.state.totalScore+','+this.state.batBScore+
               '", "scorestr2": "'+this.state.wickets+','+this.state.overs+','+this.state.targetScore+'"}}';
+    }
+
+    setScoresJson(data){
+      console.log('Setting scores as retrieved from rest API')
+      console.log(data)
+      var [batA, tot, batB] = data["scores"]["scorestr1"].split(',')
+      var [wick, ovs, targ] = data["scores"]["scorestr2"].split(',')
+      batA = parseInt(batA)
+      tot = parseInt(tot)
+      batB = parseInt(batB)
+      wick = parseInt(wick)
+      ovs = parseInt(ovs)
+      if (targ === "-"){
+        targ = 0
+      }else{
+        targ = parseInt(targ)
+      }
+      this.setState(
+        {
+            totalScore: tot,
+            wickets: wick,
+            overs: ovs,
+            targetScore: targ,
+            batAScore: batA,
+            batBScore: batB
+        });
     }
 
     handleUpdateScoreboard(){
@@ -161,7 +218,7 @@ export class App extends React.Component{
 
     componentDidMount(){
       //Handle init here
-      fetch('/api/init', 
+      fetch('/api/score', 
               {
                 method: 'GET',
                 mode: 'cors',
@@ -174,12 +231,22 @@ export class App extends React.Component{
         if(res.status != 200){
           return res
         }  
-      }).then(console.log("Initialised arduino."));
+        return res.json()
+      }).then(
+        (data) => {
+          console.log("Initialised arduino.")
+          return this.setScoresJson(data.response)
+        });
     }
 
     render(){
         return (
-            <div className="app-container">
+            <div className={"app-container "+ this.state.container_style }>
+              <div className="row">
+                <div className="col-sm-4 theme-changer">
+                    <ThemeChangeButton onButtonClick={this.handleThemeChange} but_style={this.state.button_style} value={this.state.notTheme}/>
+                </div>
+              </div>
               <div className="row">
                 <div className="col-sm scoreboard-header">
                       ICKLETON CC SCOREBOARD
@@ -188,34 +255,34 @@ export class App extends React.Component{
 
               <div className="row">
                 <div className="col-sm-4 batter-a">
-                  <BatterNumber title="Bat A" score={this.state.batAScore} scoreUpdate={this.handleBatAScoreUpdate} handleWicket={this.handleBatAWicket}/>
+                  <BatterNumber title="Bat A" score={this.state.batAScore} title_style={this.state.title_style} but_style={this.state.button_style} scoreUpdate={this.handleBatAScoreUpdate} handleWicket={this.handleBatAWicket}/>
                 </div>
                 <div className="col-sm-4 total-score">
-                  <TotalScore number={this.state.totalScore} handleClick={this.handleScoreUpdate} />
+                  <TotalScore number={this.state.totalScore} title_style={this.state.title_style} but_style={this.state.button_style} handleClick={this.handleScoreUpdate} />
                 </div>
                 <div className="col-sm-4 batter-b">
-                  <BatterNumber title="Bat B" score={this.state.batBScore} scoreUpdate={this.handleBatBScoreUpdate} handleWicket={this.handleBatBWicket}/>
+                  <BatterNumber title="Bat B" score={this.state.batBScore} title_style={this.state.title_style} but_style={this.state.button_style} scoreUpdate={this.handleBatBScoreUpdate} handleWicket={this.handleBatBWicket}/>
                 </div>
               </div>
 
               <div className="row">
-                <div className="col-sm-4 wickets-sect">
-                  <Wickets value={this.state.wickets} />
-                </div>
                 <div className="col-sm-4 overs-sect">
-                  <OversNum number={this.state.overs} handleClick={this.handleOversUpdate} />                        
+                  <OversNum number={this.state.overs} title_style={this.state.title_style} but_style={this.state.button_style} handleClick={this.handleOversUpdate} />                        
                 </div>
+                <div className="col-sm-4 wickets-sect">
+                  <Wickets title_style={this.state.title_style} value={this.state.wickets} />
+                </div>                
                 <div className="col-sm-4 target-score">
-                  <TargetScore value={this.state.targetScore} />
+                  <TargetScore title_style={this.state.title_style} value={this.state.targetScore} />
                 </div>
               </div>
 
               <div className="row">
                 <div className="col-sm-4 next-innings-button">
-                  <NextInningsButton value="Next Innings" onButtonClick={this.handleNextInnings}/>
+                  <NextInningsButton value="Next Innings" but_style={this.state.button_style} onButtonClick={this.handleNextInnings}/>
                 </div>
                 <div className="col-sm-4 reset-button">
-                  <ResetButton value="Reset" onButtonClick={this.handleResetClick}/>
+                  <ResetButton value="Reset" but_style={this.state.button_style} onButtonClick={this.handleResetClick}/>
                 </div>
                 <div className="col-sm-4 icc_image">
                 </div>
@@ -223,51 +290,6 @@ export class App extends React.Component{
               </div>
             </div>
         );
-            
-            
-           /* Boot strap table layout 
-           
-           <div className="main-container">
-                <div className="page-header scoreboard-header">
-                    <h1>Ickleton CC Scoreboard</h1>
-                </div>
-                <div className="container">
-                    <div className="row">
-                        <div className=".col-xs-4 batter-a">
-                            <BatterNumber title="Batter A" scoreUpdate={this.handleScoreUpdate} handleWicket={this.handleWicket}/>
-                        </div>
-                        <div className=".col-xs-4 total-score">
-                            <TotalScore number={this.state.totalScore} handleClick={this.handleScoreUpdate} />
-                        </div>
-                        <div className=".col-xs-4 batter-b">
-                            <BatterNumber title="Batter B" scoreUpdate={this.handleScoreUpdate} handleWicket={this.handleWicket}/>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className=".col-xs-4 wickets-sect">
-                            <Wickets value={this.state.wickets} />
-                        </div>
-                        <div className=".col-xs-4 overs-sect">
-                            <OversNum number={this.state.overs} handleClick={this.handleOversUpdate} />
-                        </div>
-                        <div className=".col-xs-4 target-score">
-                            <TargetScore value={this.state.targetScore} />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className=".col-xs-4">
-                        Lower Col 1
-                        </div>
-                        <div className=".col-xs-4">
-                        Lower Col 2
-                        </div>
-                        <div className=".col-xs-4">
-                        Lower Col 3
-                        </div>
-                    </div>
-                </div>
-            </div>
-            ); */ 
     }
 }
 
@@ -275,5 +297,7 @@ App.defaultProps = {
     wickets: 0,
     overs: 0,
     totalScore: 0,
-    targetScore: 0
+    targetScore: 0,
+    button_style: 'btn-outline-light',
+    notTheme: 'Light'
 }

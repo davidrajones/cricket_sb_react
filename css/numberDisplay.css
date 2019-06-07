@@ -50,7 +50,6 @@ button {
     grid-area: 1 / 1 / span 1 / span 3;
     /*font-size: 1.5em;*/
     text-align: center;
-    color: rgb(255, 255, 255);
 }
   
 .buttonMinus1 {

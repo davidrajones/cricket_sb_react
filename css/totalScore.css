@@ -33,7 +33,6 @@ button {
 
 .head {
     grid-area: 1 / 1 / span 1 / span 3;
-    color: rgb(255, 255, 255);
     text-align: center;
 }
 

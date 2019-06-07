@@ -18,7 +18,6 @@ button {
 
 .over-head {
     grid-area: 1 / 1 / span 1 / span 3;
-    color: rgb(255, 255, 255);
     text-align: center;
 }
 
@@ -35,10 +34,12 @@ button {
     justify-content: center;
     justify-items: center;
     text-align: center;
+    color: rgb(255, 255, 255);
 }
 
 .overs-button-text {
     grid-area: 1 / 2 / span 1 / span 1;
+    padding: 2px;
 }
 
 .overs-plus-button {

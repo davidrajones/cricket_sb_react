@@ -10,6 +10,17 @@ import { ThemeChangeButton } from '../components/ThemeChangeButton';
 
 import '../../css/app.css';
 
+function handleErrors(response) {
+    
+    console.log(response)
+    console.log(response.ok)
+
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    return response;
+}
+
 export class App extends React.Component{
     constructor (props){
         super(props);
@@ -74,13 +85,17 @@ export class App extends React.Component{
     }
 
     handleBatAWicket (){
-        this.setState({batAScore: 0});
-        this.handleWicket();
+        const r = window.confirm("Are you sure Bat A is out?"); if(r == true){
+            this.setState({batAScore: 0});
+            this.handleWicket();
+        }
     }
 
     handleBatBWicket (){
-        this.setState({batBScore: 0});
-        this.handleWicket();
+        const r = window.confirm("Are you sure Bat B is out?"); if(r == true){
+            this.setState({batBScore: 0});
+            this.handleWicket();
+        }
     }
 
     handleWicket () {
@@ -142,7 +157,7 @@ export class App extends React.Component{
 
     handleResetClick (){
         const r = window.confirm("Are you sure you want to reset?"); if(r == true){
-          this.setState(
+            this.setState(
               {
                   totalScore: 0,
                   wickets: 0,
@@ -190,24 +205,37 @@ export class App extends React.Component{
 
     handleUpdateScoreboard(){
       //Handle init here
-      
-      fetch('/api/update', 
+      try {
+          fetch('/api/update', 
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                    "access-control-allow-origin" : "*",
+                    "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: this.getScoresJson()
+                })
+          .then(handleErrors)
+          .then((res) => {
+            console.log(res.json)
+            if(res.status != 200){
+            return res
+            }
+          }).then(console.log("Updated scores."));
+        }catch(e){
+            const r = window.confirm("Error encountered "+e.text+"\nPlease try refreshing the browser and updating again"); if(r == true){
+            /*this.setState(
               {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                  "access-control-allow-origin" : "*",
-                  "Content-type": "application/json; charset=UTF-8"
-                },
-                body: this.getScoresJson()
-              })
-      .then((res) => {
-        console.log(res.json)
-        if(res.status != 200){
-          return res
+                  totalScore: 0,
+                  wickets: 0,
+                  overs: 0,
+                  targetScore: 0,
+                  batAScore: 0,
+                  batBScore: 0
+              });*/
+            }
         }
-      }).then(console.log("Updated scores."));
-
     }
     
     componentDidUpdate(prevProps, prevState) {
@@ -218,25 +246,40 @@ export class App extends React.Component{
 
     componentDidMount(){
       //Handle init here
-      fetch('/api/score', 
-              {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                  "access-control-allow-origin" : "*",
-                  "Content-type": "application/json; charset=UTF-8"
+        try {
+            fetch('/api/score', 
+                    {
+                        method: 'GET',
+                        mode: 'cors',
+                        headers: {
+                        "access-control-allow-origin" : "*",
+                        "Content-type": "application/json; charset=UTF-8"
+                        }
+                    })
+            .then(handleErrors)
+            .then((res) => {
+                if(res.status != 200){
+                    return res
                 }
-              })
-      .then((res) => {
-        if(res.status != 200){
-          return res
-        }  
-        return res.json()
-      }).then(
-        (data) => {
-          console.log("Initialised arduino.")
-          return this.setScoresJson(data.response)
-        });
+                return res.json()
+            }).then(
+                (data) => {
+                console.log("Initialised arduino.")
+                return this.setScoresJson(data.response)
+            });
+        }catch(e){
+            const r = window.confirm("Error encountered "+e.text+"\nPlease try refreshing the browser and updating again"); if(r == true){
+                /*this.setState(
+                  {
+                      totalScore: 0,
+                      wickets: 0,
+                      overs: 0,
+                      targetScore: 0,
+                      batAScore: 0,
+                      batBScore: 0
+                  });*/
+            }
+        }
     }
 
     render(){
